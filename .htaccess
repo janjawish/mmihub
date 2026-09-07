@@ -1,0 +1,78 @@
+RewriteEngine On
+RewriteBase /mmihub/
+
+#############################
+# 1) Redirections anciennes URL .php -> jolies
+#    (uniquement si le navigateur demande vraiment le .php)
+#############################
+
+# index.php -> /accueil
+RewriteCond %{THE_REQUEST} \s/+mmihub/index\.php[\s?]
+RewriteRule ^index\.php$ accueil [L,R=301]
+
+# notes.php -> /mmi-notes
+RewriteCond %{THE_REQUEST} \s/+mmihub/notes\.php[\s?]
+RewriteRule ^notes\.php$ mmi-notes [L,R=301]
+
+# abs.php -> /mmi-abs
+RewriteCond %{THE_REQUEST} \s/+mmihub/abs\.php[\s?]
+RewriteRule ^abs\.php$ mmi-abs [L,R=301]
+
+# chat.php -> /mmi-chat
+RewriteCond %{THE_REQUEST} \s/+mmihub/chat\.php[\s?]
+RewriteRule ^chat\.php$ mmi-chat [L,R=301]
+
+# mmi_edt.php -> /mmi-edt
+RewriteCond %{THE_REQUEST} \s/+mmihub/mmi_edt\.php[\s?]
+RewriteRule ^mmi_edt\.php$ mmi-edt [L,R=301]
+
+# mentions.php -> /mentions-legales
+RewriteCond %{THE_REQUEST} \s/+mmihub/mentions-legales\.php[\s?]
+RewriteRule ^mentions-legales\.php$ mentions-legales [L,R=301]
+
+# politique-confidentialite.php -> /politique-confidentialite
+RewriteCond %{THE_REQUEST} \s/+mmihub/politique-confidentialite\.php[\s?]
+RewriteRule ^politique-confidentialite\.php$ politique-confidentialite [L,R=301]
+
+# register/login.php -> /connexion
+RewriteCond %{THE_REQUEST} \s/+mmihub/register/login\.php[\s?]
+RewriteRule ^register/login\.php$ connexion [L,R=301]
+
+# register/register.php -> /creation-de-compte
+RewriteCond %{THE_REQUEST} \s/+mmihub/register/register\.php[\s?]
+RewriteRule ^register/register\.php$ creation-de-compte [L,R=301]
+
+# register/twofa.php -> /verification-a2f
+RewriteCond %{THE_REQUEST} \s/+mmihub/register/twofa\.php[\s?]
+RewriteRule ^register/twofa\.php$ verification-a2f [L,R=301]
+
+# register/verify.php -> /verification
+RewriteCond %{THE_REQUEST} \s/+mmihub/register/verify\.php[\s?]
+RewriteRule ^register/verify\.php$ verification [L,R=301]
+
+
+#############################
+# 2) Routes jolies -> fichiers PHP
+#############################
+
+# Accueil
+RewriteRule ^$ index.php [L,QSA]
+RewriteRule ^accueil/?$ index.php [L,QSA]
+
+# MMI Hub apps
+RewriteRule ^mmi-notes/?$ notes.php [L,QSA]
+RewriteRule ^mmi-abs/?$ abs.php [L,QSA]
+RewriteRule ^mmi-chat/?$ chat.php [L,QSA]
+RewriteRule ^mmi-edt/?$ mmi_edt.php [L,QSA]
+
+# Légales
+RewriteRule ^mentions-legales/?$ mentions-legales-test.php [L,QSA]
+RewriteRule ^politique-confidentialite/?$ politique-confidentialite.php [L,QSA]
+
+# Auth / register
+RewriteRule ^connexion/?$ register/login.php [L,QSA]
+RewriteRule ^creation-de-compte/?$ register/register.php [L,QSA]
+RewriteRule ^verification-a2f/?$ register/twofa.php [L,QSA]
+RewriteRule ^verification/?$ register/verify.php [L,QSA]
+# /mon-profil -> profile.php
+RewriteRule ^mon-profil/?$ profile.php [L,QSA]

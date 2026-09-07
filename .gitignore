@@ -1,0 +1,20 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+register/config.local.php
+
+# User-generated files and personal data
+uploads/
+register/uploads/
+ressources/mmihub (4).sql
+
+# Editor, OS and dependency artifacts
+.idea/
+.vscode/
+*.log
+Thumbs.db
+Desktop.ini
+
+# Large source-design files are kept outside the Git repository
+ressources/*.ai
